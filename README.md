@@ -17,6 +17,7 @@
 4. 通过 `this.$data.$currentLifecycle` 获取当前的生命周期。
 
 5. 通过自定义公共逻辑配置，实现统一处理或者拦截。
+   
    应用场景举例：
    1. 微信小程序检查更新。每个页面进行检查比 APP 启动时检查更有效。
    2. `unloaded` 时进行析构，比如重置页面、组件状态。
@@ -68,16 +69,16 @@ export default mpvueCombiner(
 
 `mpvue-combiner` 推荐的实例选项对象写法：
 
-> 1. 使用小程序原生的生命周期而不是 `vue` 的生命周期，推荐在公共实例选项中才使用 `mpvue-combiner` 扩充的 10 个生命周期，因为在页面实例选项中使用时无意义的。
-> 2. 书写顺序
->    1. `data`
->    2. `computed`
->    3. `components`
->    4. 生命周期
->    5. `onLifecycleChange`
->    6. 小程序页面挂载方法
->    7. `methods`
-> 3. 将公共实例选项统一放在一个文件夹下管理。
+1. 使用小程序原生的生命周期而不是 `vue` 的生命周期，推荐在公共实例选项中才使用 `mpvue-combiner` 扩充的 10 个生命周期，因为在页面实例选项中使用是无意义的。
+2. 书写顺序
+   1. `data`
+   2. `computed`
+   3. `components`
+   4. 生命周期
+   5. `onLifecycleChange`
+   6. 小程序页面挂载方法
+   7. `methods`
+3. 将公共实例选项统一放在一个文件夹下管理。
 
 **一个可能的公共实例选项对象：**
 
@@ -167,10 +168,15 @@ export default mpvueCombiner(ConfcheckUpload, pageConf)
 
 2. `mpvueCombiner` 的内部作用：
    1. 组合所有实例选项的 `data`、`methods`。
+      
       类似 `Object.assign`，后面的 `data`、`methods` 成员会覆盖前面的同名成员。
    2. 类似 `beforeLoad`、`onLoad`、`loaded` 为一组生命周期。该组生命周期都会在 `onLoad` 时进行调用。
+      
       以组为单位，15 种生命周期会被处理为小程序的 5 种生命周期。
-      生命周期调用顺序： 1. 单组生命周期的顺序为 `beforeLifecycle` > `baseLifecycle` > `afterLifecycle`。 2. 越靠前的实例选项中的生命周期越先调用。
+      
+      生命周期调用顺序： 
+        1. 单组生命周期的顺序为 `beforeLifecycle` > `baseLifecycle` > `afterLifecycle`。 
+        2. 越靠前的实例选项中的生命周期越先调用。
 
 **默认的扩充内容：**
 
@@ -184,7 +190,9 @@ export default mpvueCombiner(ConfcheckUpload, pageConf)
 2. `onLifecycleChange`：
 
    在生命周期发生变化时触发。
+   
    `onLifecycleChange(lifecycle)`
+   
    `lifecycle` 值： `onLoad`, `onShow`, `onReady`, `onHide`, `onUnload`
 
 ## License
