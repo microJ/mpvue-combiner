@@ -1,0 +1,37 @@
+{
+  "name": "mpvue-combiner",
+  "version": "0.0.1",
+  "description": "combine mpvue config, extend wxapp lifecycles from 5 to 15",
+  "main": "dist/index.js",
+  "repository": "git@github.com:microJ/mpvue-combiner.git",
+  "author": "<clear2Jay@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "mpvue combiner",
+    "extend mpvue config",
+    "extend miniapp lifecycles",
+    "小程序生命周期扩充",
+    "小程序生命周期拦截"
+  ],
+  "scripts": {
+    "test": "node ./test/",
+    "build": "yarn run clear && yarn run lint && babel src -d ./dist",
+    "prepublish": "yarn run build",
+    "lint": "eslint src",
+    "clear": "rimraf dist"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^5.12.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "rimraf": "^2.6.3"
+  }
+}
